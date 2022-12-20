@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,16 +9,22 @@ namespace Mizu
     {
         [SerializeField] private LineRenderer _lineRenderer;
         [SerializeField] private EdgeCollider2D _edgeCollider;
-        [Range(0.1f, 1.5f)][SerializeField] private float penLineWidth = 0.5f;
+
         private int positionCount = 0;
         private int positionIndex = -1;
 
         private Vector3 _startInput;
-        private Vector3 _endInput;
         private Vector3 _camPosZ;
         private List<Vector2> points;
+        private List<Vector2> points2;
+        private Vector3 _newLine;
 
         [SerializeField] private Camera _cam;
+        public Action<List<Vector2>> endDrawingAction;
+
+        [Header("Pen Line Settings")]
+        [Range(0.1f, 1.5f)] [SerializeField] private float penLineWidth = 0.5f;
+        [SerializeField] private Material penLineMat;
 
         private bool canDraw = true;
         public bool IsCovered { get; private set; } = false;
@@ -28,10 +35,13 @@ namespace Mizu
             positionIndex = -1;
 
             _lineRenderer.positionCount = positionCount;
-            _lineRenderer.startWidth = 1f;
-            _lineRenderer.endWidth = 1f;
+            _lineRenderer.startWidth = penLineWidth;
+            _lineRenderer.endWidth = penLineWidth;
+            _lineRenderer.material = penLineMat;
 
             points = new List<Vector2>();
+            points2 = new List<Vector2>();
+            _newLine = new Vector3(penLineWidth / 2, penLineWidth / 2, 0);
         }
 
         private void Start()
@@ -63,7 +73,7 @@ namespace Mizu
             }
             if (Input.GetMouseButtonUp(0))
             {
-                _endInput = _cam.ScreenToWorldPoint(Input.mousePosition) - _camPosZ;
+                var _endInput = _cam.ScreenToWorldPoint(Input.mousePosition) - _camPosZ;
                 AddPoints(_endInput);
 
                 EndDrawing();
@@ -78,6 +88,9 @@ namespace Mizu
             _lineRenderer.positionCount = positionCount;
             _lineRenderer.SetPosition(positionIndex, newPoint);
             points.Add(newPoint);
+
+            newPoint += (Vector2)_newLine;
+            points2.Add(newPoint);
         }
 
         private void EndDrawing()
@@ -85,6 +98,9 @@ namespace Mizu
             canDraw = false;
 
             _edgeCollider.SetPoints(points);
+            //var edge = gameObject.AddComponent<EdgeCollider2D>();
+            //edge.SetPoints(points2);
+            endDrawingAction?.Invoke(points);
         }
     }
 }
