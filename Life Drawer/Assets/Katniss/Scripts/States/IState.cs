@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IState
+namespace Katniss
 {
-    void OnEnter(Player player);
-    void OnExit();
+    public interface IState
+    {
+        void OnEnter(Player player);
+        void OnExit();
 
-    IEnumerator Update();
+        IEnumerator Update();
+    }
 }

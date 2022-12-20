@@ -2,22 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Success : IState
+namespace Katniss
 {
-    private Player player;
-
-    public void OnEnter(Player _player)
+    public class Success : IState
     {
-        player = _player;
-    }
+        private Player player;
 
-    public void OnExit()
-    {
-        player.SetState(new Ready());
-    }
+        public void OnEnter(Player _player)
+        {
+            player = _player;
+        }
 
-    public IEnumerator Update()
-    {
-        yield return null;
+        public void OnExit()
+        {
+            player.SetState(new Starting());
+        }
+
+        public IEnumerator Update()
+        {
+            yield return null;
+        }
     }
 }

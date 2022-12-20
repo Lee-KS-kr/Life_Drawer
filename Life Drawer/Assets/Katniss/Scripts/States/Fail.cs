@@ -2,22 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fail : IState
+namespace Katniss
 {
-    private Player player;
-
-    public void OnEnter(Player _player)
+    public class Fail : IState
     {
-        player = _player;
-    }
+        private Player player;
 
-    public void OnExit()
-    {
-        player.SetState(new Ready());
-    }
+        [SerializeField] GameObject baseFace;
+        [SerializeField] GameObject failFace;
 
-    public IEnumerator Update()
-    {
-        yield return null;
+        public void OnEnter(Player _player)
+        {
+            player = _player;
+
+            baseFace.SetActive(false);
+            failFace.SetActive(true);
+        }
+
+        public void OnExit()
+        {
+            player.SetState(new Starting());
+        }
+
+        public IEnumerator Update()
+        {
+            yield return null;
+        }
     }
 }

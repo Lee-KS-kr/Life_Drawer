@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Drawing : IState
+namespace Katniss
 {
-    private Player player;
-
-    public void OnEnter(Player _player)
+    public class Drawing : IState
     {
-        player = _player;
-    }
+        private Player player;
 
-    public void OnExit()
-    {
-        player.SetState(new Waiting());
-    }
+        public void OnEnter(Player _player)
+        {
+            player = _player;
+        }
 
-    public IEnumerator Update()
-    {
-        yield return null;
+        public void OnExit()
+        {
+            player.SetState(new Waiting());
+        }
+
+        public IEnumerator Update()
+        {
+            yield return null;
+        }
     }
 }

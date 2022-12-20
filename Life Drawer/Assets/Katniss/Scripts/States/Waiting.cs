@@ -2,29 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Waiting : IState
+namespace Katniss
 {
-    private Player player;
-
-    public void OnEnter(Player _player)
+    public class Waiting : IState
     {
-        player = _player;
+        private Player player;
 
-        //start Beating (Heart)
-    }
+        public void OnEnter(Player _player)
+        {
+            player = _player;
 
-    public void OnExit()
-    {
-        //if ()
-        //{
-        //    player.SetState(new Success());
-        //    player.SetState(new Fail());
-        //set player state depends on flag
-        //}
-    }
+            //start Beating (Heart)
+        }
 
-    public IEnumerator Update()
-    {
-        yield return null;
+        public void OnExit()
+        {
+            //if ()
+            //{
+            //    player.SetState(new Success());
+            //    player.SetState(new Fail());
+            //set player state depends on flag
+            //}
+        }
+
+        public IEnumerator Update()
+        {
+            yield return null;
+        }
     }
 }

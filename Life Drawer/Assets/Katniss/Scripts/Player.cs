@@ -3,24 +3,27 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-
-public class Player : MonoBehaviour
+namespace Katniss
 {
-    private IState currentState;
-
-    private void Start()
+    public class Player : MonoBehaviour
     {
-        SetState(new Ready());
-    }
+        private IState currentState;
 
-    public void SetState(IState nextState)
-    {
-        if (currentState != null)
+        private void Start()
         {
-            currentState.OnExit();
+            SetState(new Ready());
         }
 
-        currentState = nextState;
-        currentState.OnEnter(this);
+        public void SetState(IState nextState)
+        {
+            if (currentState != null)
+            {
+                currentState.OnExit();
+            }
+
+            currentState = nextState;
+            currentState.OnEnter(this);
+            StartCoroutine(currentState.Update());
+        }
     }
 }
