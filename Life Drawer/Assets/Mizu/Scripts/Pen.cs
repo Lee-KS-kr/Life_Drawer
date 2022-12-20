@@ -27,7 +27,7 @@ namespace Mizu
         public Action<List<Vector2>> endDrawingAction;
 
         [Header("Pen Line Settings")]
-        [Range(0.1f, 1.5f)] [SerializeField] private float penLineWidth = 0.5f;
+        private float penLineWidth = 1.0f;
         [SerializeField] private Material penLineMat;
 
         private bool canDraw = true;

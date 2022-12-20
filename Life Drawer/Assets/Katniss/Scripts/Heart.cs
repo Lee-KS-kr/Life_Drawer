@@ -9,7 +9,7 @@ namespace Katniss
     {
         private Vector3 bloodParticlePosition = new Vector3(0, 0, 0);
 
-        private int bloodParticlePoolMaxSize = 250;
+        private int bloodParticlePoolMaxSize = 300;
 
         [SerializeField] BloodParticle bloodParticlePrefab;
 
