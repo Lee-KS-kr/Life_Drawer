@@ -10,8 +10,12 @@ namespace Mizu
         [SerializeField] private LineRenderer _lineRenderer;
         [SerializeField] private EdgeCollider2D _edgeCollider;
 
+        [SerializeField] private bool isInnerLine;
+        [SerializeField] private bool isOuterLine;
+
         private int positionCount = 0;
         private int positionIndex = -1;
+        private double angle;
 
         private Vector3 _startInput;
         private Vector3 _camPosZ;
@@ -46,7 +50,7 @@ namespace Mizu
 
         private void Start()
         {
-            _cam = Camera.main;
+            //_cam = Camera.main;
             _camPosZ = _cam.transform.position;
         }
 
@@ -61,6 +65,7 @@ namespace Mizu
             if (Input.GetMouseButtonDown(0))
             {
                 _startInput = _cam.ScreenToWorldPoint(Input.mousePosition) - _camPosZ;
+
                 AddPoints(_startInput);
             }
             if (Input.GetMouseButton(0))
@@ -69,7 +74,9 @@ namespace Mizu
                 var dist = Vector3.SqrMagnitude(points[positionIndex] - (Vector2)pos);
                 var want = Mathf.Pow(0.2f, 2);
                 if (dist > want)
+                {
                     AddPoints(pos);
+                }
             }
             if (Input.GetMouseButtonUp(0))
             {
@@ -84,6 +91,19 @@ namespace Mizu
         {
             positionCount++;
             positionIndex++;
+
+            if (isInnerLine)
+            {
+                angle = Math.Atan2(newPoint.y, newPoint.x);
+                newPoint.x -= (penLineWidth / 2 * (float)Math.Cos(angle));
+                newPoint.y -= (penLineWidth / 2 * (float)Math.Sin(angle));
+            }
+            else if (isOuterLine)
+            {
+                angle = Math.Atan2(newPoint.y, newPoint.x);
+                newPoint.x += (penLineWidth / 2 * (float)Math.Cos(angle));
+                newPoint.y += (penLineWidth / 2 * (float)Math.Sin(angle));
+            }
 
             _lineRenderer.positionCount = positionCount;
             _lineRenderer.SetPosition(positionIndex, newPoint);
