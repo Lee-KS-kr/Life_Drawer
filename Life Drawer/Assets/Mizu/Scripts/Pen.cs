@@ -50,7 +50,6 @@ namespace Mizu
 
         private void Start()
         {
-            //_cam = Camera.main;
             _camPosZ = _cam.transform.position;
         }
 
@@ -118,8 +117,6 @@ namespace Mizu
             canDraw = false;
 
             _edgeCollider.SetPoints(points);
-            //var edge = gameObject.AddComponent<EdgeCollider2D>();
-            //edge.SetPoints(points2);
             endDrawingAction?.Invoke(points);
         }
     }

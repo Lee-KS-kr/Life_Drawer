@@ -10,8 +10,12 @@ namespace Mizu
         [SerializeField] private PolygonCollider2D _polygonCollider;
         [SerializeField] private Camera _cam;
 
+        private int bloodLayer;
+
         private void Start()
         {
+            bloodLayer = LayerMask.NameToLayer("Blood Particle");
+
             _cam = Camera.main;
 
             _drawingPen.endDrawingAction = null;
@@ -29,6 +33,12 @@ namespace Mizu
             gameScreen[3] = _cam.ScreenToWorldPoint(new Vector3(0, 1280, 0));
 
             _polygonCollider.SetPath(1, gameScreen);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.layer == bloodLayer)
+                Debug.Log("BLOOD PARTICLE. GAME FAILED");
         }
     }
 }

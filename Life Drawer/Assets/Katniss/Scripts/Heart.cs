@@ -9,7 +9,7 @@ namespace Katniss
     {
         private Vector3 bloodParticlePosition = new Vector3(0, 0, 0);
 
-        private int bloodParticlePoolMaxSize = 300;
+        private int bloodParticlePoolMaxSize = 2;
 
         [SerializeField] BloodParticle bloodParticlePrefab;
 
@@ -29,6 +29,7 @@ namespace Katniss
         private BloodParticle CreateNewBloodParticle()
         {
             BloodParticle bloodParticle = Instantiate(bloodParticlePrefab);
+            bloodParticle.transform.position = bloodParticlePosition;
             bloodParticle.SetPool(bloodParticlePool);
             return bloodParticle;
         }
@@ -40,7 +41,7 @@ namespace Katniss
             bloodParticlePosition.x += Random.Range(0f, 0.001f);
             bloodParticlePosition.y += Random.Range(0f, 0.001f);
             bloodParticle.gameObject.transform.position = bloodParticlePosition;
-            bloodParticlePosition.Set(0, 0, 0);
+            bloodParticlePosition.Set(0f, 0f, 0f);
         }
 
         private void ReleaseBloodParticle(BloodParticle bloodParticle)
@@ -62,8 +63,17 @@ namespace Katniss
                     bloodParticlePool.Release(CreateNewBloodParticle());
                 }
 
-                StartCoroutine(StartBeating());
+                //StartCoroutine(StartBeating());
+                StartBeat();
             }
+        }
+
+        private void StartBeat()
+        {
+            var obj1 = bloodParticlePool.Get();
+            obj1.gameObject.transform.position = new Vector3(-1, 0, 0);
+            var obj = bloodParticlePool.Get();
+            obj.FindPath();
         }
 
         IEnumerator StartBeating()
