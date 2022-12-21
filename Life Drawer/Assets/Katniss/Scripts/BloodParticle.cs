@@ -47,7 +47,7 @@ namespace Katniss
         public bool CheckByRay(int i)
         {
             hitCount = col.Raycast((Vector2)transform.position + (Vector2)directions[i], hits, rayDistance, layerMask);
-
+            Debug.Log(3);
             if (hitCount > 0)
             {
                 return false;
