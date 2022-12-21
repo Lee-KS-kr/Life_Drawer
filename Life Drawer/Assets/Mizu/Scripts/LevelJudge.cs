@@ -14,6 +14,11 @@ namespace Mizu
 
         private void Start()
         {
+            Initialize();
+        }
+
+        private void Initialize()
+        {
             _penInside.gameSuccessAction -= SetGameSuccess;
             _penInside.gameSuccessAction += SetGameSuccess;
             _penInside.gameFailedAction -= SetGameFailed;
@@ -21,6 +26,9 @@ namespace Mizu
 
             _waterFallJudge.gameFailedAction -= SetGameFailed;
             _waterFallJudge.gameFailedAction += SetGameFailed;
+
+            _uiManager.LevelsUI.includeCountAction -= SetPenInsideCount;
+            _uiManager.LevelsUI.includeCountAction += SetPenInsideCount;
         }
 
         private void SetGameSuccess()

@@ -10,14 +10,20 @@ namespace Mizu
         [SerializeField] private Pen _pen;
         [SerializeField] private PolygonCollider2D _polygonCollider;
 
-        [SerializeField] private int nowCount = 0;
-        [SerializeField]  private int neddInclude = 0;
+        [SerializeField] private int nowCount;
+        [SerializeField]  private int needInclude;
 
         private int includeLayer;
         private int dontIncludeLayer;
         
         public Action gameSuccessAction;
         public Action gameFailedAction;
+
+        private void Awake()
+        {
+            nowCount = 0;
+            needInclude = 0;
+        }
 
         private void Start()
         {
@@ -50,13 +56,13 @@ namespace Mizu
         private void CountInclude()
         {
             nowCount++;
-            if(nowCount == neddInclude)
+            if(nowCount == needInclude)
                 gameSuccessAction?.Invoke();
         }
 
         public void SetIncludeCount(int count)
         {
-            neddInclude = count;
+            needInclude = count;
         }
     }
 }

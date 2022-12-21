@@ -31,7 +31,7 @@ namespace Mizu
         {
             includeCounts = new[] {0, 4, 5, 8};
             OnInitialize();
-            ChangeLevel(2);
+            ChangeLevel(1);
         }
 
         private void OnInitialize()
@@ -56,6 +56,7 @@ namespace Mizu
             levelDictionary.TryGetValue(NowStage, out obj);
             obj?.SetActive(true);
             includeCountAction?.Invoke(includeCounts[(int) NowStage]);
+            Debug.Log($"Set include : {includeCounts[(int) NowStage]}");
         }
 
         public void RetryGame()
