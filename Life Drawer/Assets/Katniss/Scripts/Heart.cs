@@ -7,9 +7,10 @@ namespace Katniss
 {
     public class Heart : MonoBehaviour
     {
-        private Vector3 bloodParticlePosition = new Vector3(0, 0, 0);
+        private int bloodParticlePoolMaxSize = 500;
+        private float time = 0f;
 
-        private int bloodParticlePoolMaxSize = 2;
+        private BloodParticle firstBloodParticle;
 
         [SerializeField] BloodParticle bloodParticlePrefab;
 
@@ -26,22 +27,36 @@ namespace Katniss
                 );
         }
 
+        private void Start()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                bloodParticlePool.Release(CreateNewBloodParticle());
+            }
+
+            if (bloodParticlePool.CountInactive < 1)
+            {
+                bloodParticlePool.Release(CreateNewBloodParticle());
+            }
+
+            var tmp = bloodParticlePool.Get();
+            tmp.transform.position.Set(0.3f, 0, 0);
+            tmp.gameObject.layer = 21;
+        }
+
         private BloodParticle CreateNewBloodParticle()
         {
             BloodParticle bloodParticle = Instantiate(bloodParticlePrefab);
-            bloodParticle.transform.position = bloodParticlePosition;
             bloodParticle.SetPool(bloodParticlePool);
+            DontDestroyOnLoad(bloodParticle);
             return bloodParticle;
         }
 
         private void GetBloodParticle(BloodParticle bloodParticle)
         {
             bloodParticle.gameObject.SetActive(true);
-
-            bloodParticlePosition.x += Random.Range(0f, 0.001f);
-            bloodParticlePosition.y += Random.Range(0f, 0.001f);
-            bloodParticle.gameObject.transform.position = bloodParticlePosition;
-            bloodParticlePosition.Set(0f, 0f, 0f);
+            //if (time < 5f)
+            //    duplicateBloodParticle(bloodParticle);
         }
 
         private void ReleaseBloodParticle(BloodParticle bloodParticle)
@@ -58,30 +73,33 @@ namespace Katniss
         {
             if (Input.GetMouseButtonUp(0))
             {
-                for (int i = 0; i < bloodParticlePoolMaxSize; i++)
-                {
-                    bloodParticlePool.Release(CreateNewBloodParticle());
-                }
-
-                //StartCoroutine(StartBeating());
-                StartBeat();
+                StartBeating();
             }
+
+            time += Time.deltaTime;
         }
 
-        private void StartBeat()
+        private void StartBeating()
         {
-            var obj1 = bloodParticlePool.Get();
-            obj1.gameObject.transform.position = new Vector3(-1, 0, 0);
-            var obj = bloodParticlePool.Get();
-            obj.FindPath();
+            firstBloodParticle = bloodParticlePool.Get();
+            firstBloodParticle.gameObject.transform.position.Set(0, 0, 0);
+            duplicateBloodParticle(firstBloodParticle);
         }
 
-        IEnumerator StartBeating()
+
+
+        private void duplicateBloodParticle(BloodParticle bloodParticle)
         {
-            for (int i = 0; i < bloodParticlePoolMaxSize; i++)
+            //if (time > 5f)
+            //    return;
+
+            for (int i = 0; i < 8; i++)
             {
-                bloodParticlePool.Get();
-                yield return null;
+                if (bloodParticle.CheckByRay(i))
+                {
+                    //bloodParticlePool.Get();
+                    Debug.Log($"get {i}");
+                }
             }
         }
     }
