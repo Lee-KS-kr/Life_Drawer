@@ -10,6 +10,7 @@ namespace Mizu
     {
         [SerializeField] private Player _player;
         [SerializeField] private LevelsUI _levelUI;
+        public LevelsUI LevelsUI => _levelUI;
 
         [SerializeField] private Button _nextButton;
         [SerializeField] private Button _retryButton;
@@ -50,6 +51,7 @@ namespace Mizu
 
         public void SetSuccess()
         {
+            Debug.Log("Success!");
             _successVFX.SetActive(true);
             _successObj.SetActive(true);
             StartCoroutine(backLightRotEffect());
@@ -57,6 +59,7 @@ namespace Mizu
 
         public void SetFailed()
         {
+            Debug.Log("Failed!");
             _failedObj.SetActive(false);
             _player.SetState(new Starting());
         }
