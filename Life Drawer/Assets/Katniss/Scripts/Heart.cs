@@ -7,15 +7,14 @@ namespace Katniss
 {
     public class Heart : MonoBehaviour
     {
-        private int bloodParticlePoolMaxSize = 10;
+        private int bloodParticlePoolMaxSize = 300;
         private int count = 0;
 
         private BloodParticle firstBloodParticle;
-        private BloodParticle nextBloodParticle;
 
         [SerializeField] BloodParticle bloodParticlePrefab;
 
-        private IObjectPool<BloodParticle> bloodParticlePool;
+        public IObjectPool<BloodParticle> bloodParticlePool;
 
         private void Awake()
         {
@@ -30,17 +29,20 @@ namespace Katniss
 
         private void Start()
         {
-            for (int i = 0; i < bloodParticlePoolMaxSize; i++)
+            if (bloodParticlePool.CountInactive <= 0)
             {
-                bloodParticlePool.Release(CreateNewBloodParticle());
+                for (int i = 0; i < bloodParticlePoolMaxSize; i++)
+                {
+                    bloodParticlePool.Release(CreateNewBloodParticle());
+                }
             }
         }
 
-        private BloodParticle CreateNewBloodParticle()
+        public BloodParticle CreateNewBloodParticle()
         {
             BloodParticle bloodParticle = Instantiate(bloodParticlePrefab);
             bloodParticle.SetPool(bloodParticlePool);
-            //DontDestroyOnLoad(bloodParticle);
+            DontDestroyOnLoad(bloodParticle);
             return bloodParticle;
         }
 
@@ -60,7 +62,7 @@ namespace Katniss
 
         private void DestroyBloodParticle(BloodParticle bloodParticle)
         {
-            // Destroy(bloodParticle.gameObject);
+            Destroy(bloodParticle.gameObject);
         }
 
         private void Update()
@@ -79,18 +81,27 @@ namespace Katniss
 
         IEnumerator duplicateBloodParticle(BloodParticle bloodParticle)
         {
-            Debug.Log(0);
             yield return null;
+
+            var time = 0f;
+            var randomTime = Random.Range(0.1f, 0.3f);
 
             for (int i = 0; i < 8; i++)
             {
-                Debug.Log(1);
+                while (time < randomTime)
+                {
+                    time += Time.deltaTime;
+                    yield return null;
+                }
+
+                time = 0f;
+
                 if (bloodParticlePoolMaxSize <= count)
                     yield break;
 
                 if (bloodParticle.CheckByRay(i))
                 {
-                    nextBloodParticle = bloodParticlePool.Get();
+                    var nextBloodParticle = bloodParticlePool.Get();
                     nextBloodParticle.movePos(bloodParticle.transform.position, i);
                     StartCoroutine(duplicateBloodParticle(nextBloodParticle));
                 }
