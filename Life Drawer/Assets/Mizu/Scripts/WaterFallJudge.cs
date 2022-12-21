@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,14 +12,18 @@ namespace Mizu
         [SerializeField] private Camera _cam;
 
         private int bloodLayer;
+        private int includeLayer;
+
+        public Action gameFailedAction;
 
         private void Start()
         {
             bloodLayer = LayerMask.NameToLayer("Blood Particle");
+            includeLayer = LayerMask.NameToLayer("Include");
 
             _cam = Camera.main;
 
-            _drawingPen.endDrawingAction = null;
+            _drawingPen.endDrawingAction -= OnEndDrawing;
             _drawingPen.endDrawingAction += OnEndDrawing;
         }
 
@@ -35,10 +40,14 @@ namespace Mizu
             _polygonCollider.SetPath(1, gameScreen);
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter2D(Collider2D col)
         {
-            if (other.gameObject.layer == bloodLayer)
-                Debug.Log("BLOOD PARTICLE. GAME FAILED");
+            Debug.Log(col.gameObject.name);
+            if (col.gameObject.layer == bloodLayer || col.gameObject.layer == includeLayer)
+            {
+                gameFailedAction?.Invoke();
+                Debug.Log($"{col.gameObject.name} + GAME FAILED");
+            }
         }
     }
 }

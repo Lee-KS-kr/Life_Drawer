@@ -3339,7 +3339,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 439
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -3376,6 +3376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 644664307}
   - component: {fileID: 644664308}
+  - component: {fileID: 644664309}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -3417,6 +3418,24 @@ MonoBehaviour:
   _failedObj: {fileID: 1936183095}
   _successObj: {fileID: 1204415373}
   _successVFX: {fileID: 1046268868}
+  _pen: {fileID: 308743638}
+  _levelJudge: {fileID: 644664309}
+--- !u!114 &644664309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644664306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542b1e6054bf35442bfa72533e7e99f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waterFallJudge: {fileID: 910508197}
+  _penInside: {fileID: 1885526266}
+  _uiManager: {fileID: 644664308}
+--- !u!1 &657411000 stripped
   _pen: {fileID: 655369696}
 --- !u!1 &655369696
 GameObject:
@@ -4918,6 +4937,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8964212417839920658, guid: 58a6489ab9b744570af4eacb7849a83a, type: 3}
   m_PrefabInstance: {fileID: 905466950}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &910508197 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3320263614359546213, guid: 0bd8bc70e1f0c44dfad2eb4316b735d8, type: 3}
+  m_PrefabInstance: {fileID: 1885526264}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df1ce2295a1454e09a4d71fa5a572ce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &951257861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10227,6 +10257,10 @@ PrefabInstance:
       propertyPath: penLineWidth
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3320263613352169450, guid: 0bd8bc70e1f0c44dfad2eb4316b735d8, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3320263613557761990, guid: 0bd8bc70e1f0c44dfad2eb4316b735d8, type: 3}
       propertyPath: m_Name
       value: NewDrawingPen
@@ -10285,11 +10319,19 @@ PrefabInstance:
       objectReference: {fileID: 239644509}
     - target: {fileID: 3320263614359546215, guid: 0bd8bc70e1f0c44dfad2eb4316b735d8, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3503171936402708137, guid: 0bd8bc70e1f0c44dfad2eb4316b735d8, type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573089884224802804, guid: 0bd8bc70e1f0c44dfad2eb4316b735d8, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350208630291011175, guid: 0bd8bc70e1f0c44dfad2eb4316b735d8, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bd8bc70e1f0c44dfad2eb4316b735d8, type: 3}
@@ -10298,6 +10340,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3320263613557761991, guid: 0bd8bc70e1f0c44dfad2eb4316b735d8, type: 3}
   m_PrefabInstance: {fileID: 1885526264}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1885526266 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8005562916757842383, guid: 0bd8bc70e1f0c44dfad2eb4316b735d8, type: 3}
+  m_PrefabInstance: {fileID: 1885526264}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437d3574399093b48ac680bd5db1b8ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1893752769
 PrefabInstance:
   m_ObjectHideFlags: 0

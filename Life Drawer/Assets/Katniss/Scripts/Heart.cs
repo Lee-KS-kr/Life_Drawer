@@ -11,6 +11,7 @@ namespace Katniss
         private int count = 0;
 
         private BloodParticle firstBloodParticle;
+        private float size;
 
         [SerializeField] BloodParticle bloodParticlePrefab;
 
@@ -77,6 +78,8 @@ namespace Katniss
         {
             firstBloodParticle = bloodParticlePool.Get();
             StartCoroutine(duplicateBloodParticle(firstBloodParticle));
+
+            StartCoroutine(beatingEffect());
         }
 
         IEnumerator duplicateBloodParticle(BloodParticle bloodParticle)
@@ -107,6 +110,30 @@ namespace Katniss
                 }
                 yield return null;
             }
+        }
+
+        IEnumerator beatingEffect()
+        {
+            var effectSize = 1f;
+            var effectTime = 0.5f;
+
+            size = transform.localScale.x;
+
+            for (var time = 0f; ; time += Time.deltaTime)
+            {
+                if (time > effectTime)
+                {
+                    time = 0;
+                    transform.localScale = Vector3.one * size;
+                }
+                else
+                {
+                    transform.localScale = Vector3.one * (size + effectSize * time / effectTime);
+                }
+
+                yield return null;
+            }
+
         }
     }
 }

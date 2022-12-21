@@ -17,6 +17,7 @@ namespace Mizu
         [SerializeField] private GameObject _failedObj;
         [SerializeField] private GameObject _successObj;
         [SerializeField] private GameObject _successVFX;
+        [SerializeField] private GameObject _successBackLight;
         [SerializeField] private GameObject _pen;
 
         private void Start()
@@ -51,12 +52,26 @@ namespace Mizu
         {
             _successVFX.SetActive(true);
             _successObj.SetActive(true);
+            StartCoroutine(backLightRotEffect());
         }
 
         public void SetFailed()
         {
             _failedObj.SetActive(false);
             _player.SetState(new Starting());
+        }
+
+        IEnumerator backLightRotEffect()
+        {
+            var speed = -90;
+
+            for (var time = 0f; time < 3f; time += Time.deltaTime)
+            {
+                _successBackLight.transform.Rotate(0, 0, speed * Time.deltaTime);
+
+                yield return null;
+            }
+
         }
     }
 }
