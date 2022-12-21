@@ -19,6 +19,7 @@ namespace Mizu
         [SerializeField] private GameObject _successVFX;
         [SerializeField] private GameObject _pen;
 
+        [SerializeField] private LevelJudge _levelJudge;
         private void Start()
         {
             Initialize();
@@ -28,6 +29,9 @@ namespace Mizu
         {
             _nextButton.onClick.AddListener(OnNextButton);
             _retryButton.onClick.AddListener(OnRetryButton);
+
+            _levelUI.includeCountAction -= SetIncludeCount;
+            _levelUI.includeCountAction += SetIncludeCount;
 
             _failedObj.SetActive(false);
             _successObj.SetActive(false);
@@ -57,6 +61,11 @@ namespace Mizu
         {
             _failedObj.SetActive(false);
             _player.SetState(new Starting());
+        }
+
+        private void SetIncludeCount(int count)
+        {
+            _levelJudge.SetPenInsideCount(count);
         }
     }
 }
