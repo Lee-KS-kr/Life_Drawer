@@ -7,10 +7,11 @@ namespace Katniss
 {
     public class Heart : MonoBehaviour
     {
-        private int bloodParticlePoolMaxSize = 500;
-        private float time = 0f;
+        private int bloodParticlePoolMaxSize = 100;
+        private int count = 0;
 
         private BloodParticle firstBloodParticle;
+        private BloodParticle nextBloodParticle;
 
         [SerializeField] BloodParticle bloodParticlePrefab;
 
@@ -29,19 +30,10 @@ namespace Katniss
 
         private void Start()
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < bloodParticlePoolMaxSize; i++)
             {
                 bloodParticlePool.Release(CreateNewBloodParticle());
             }
-
-            if (bloodParticlePool.CountInactive < 1)
-            {
-                bloodParticlePool.Release(CreateNewBloodParticle());
-            }
-
-            var tmp = bloodParticlePool.Get();
-            tmp.transform.position.Set(0.3f, 0, 0);
-            tmp.gameObject.layer = 21;
         }
 
         private BloodParticle CreateNewBloodParticle()
@@ -54,9 +46,11 @@ namespace Katniss
 
         private void GetBloodParticle(BloodParticle bloodParticle)
         {
+            if (bloodParticle == null)
+                return;
+
+            count++;
             bloodParticle.gameObject.SetActive(true);
-            //if (time < 5f)
-            //    duplicateBloodParticle(bloodParticle);
         }
 
         private void ReleaseBloodParticle(BloodParticle bloodParticle)
@@ -75,31 +69,30 @@ namespace Katniss
             {
                 StartBeating();
             }
-
-            time += Time.deltaTime;
         }
 
         private void StartBeating()
         {
             firstBloodParticle = bloodParticlePool.Get();
-            firstBloodParticle.gameObject.transform.position.Set(0, 0, 0);
-            duplicateBloodParticle(firstBloodParticle);
+            StartCoroutine(duplicateBloodParticle(firstBloodParticle));
         }
 
-
-
-        private void duplicateBloodParticle(BloodParticle bloodParticle)
+        IEnumerator duplicateBloodParticle(BloodParticle bloodParticle)
         {
-            //if (time > 5f)
-            //    return;
+            yield return null;
 
             for (int i = 0; i < 8; i++)
             {
+                if (bloodParticlePool.CountInactive == count)
+                    break;
+
                 if (bloodParticle.CheckByRay(i))
                 {
-                    //bloodParticlePool.Get();
-                    Debug.Log($"get {i}");
+                    nextBloodParticle=bloodParticlePool.Get();
+                    nextBloodParticle.movePos(bloodParticle.transform.position, i);
+                    StartCoroutine(duplicateBloodParticle(nextBloodParticle));
                 }
+                yield return null;
             }
         }
     }

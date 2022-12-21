@@ -10,10 +10,12 @@ namespace Katniss
         private int bloodLayer;
         private int penLayer;
         private int blindLineLayer;
-        private float rayDistance = 100f;
+        private int hitCount;
+        private float rayDistance;
 
-        private LayerMask bloodLayerMask;
-        private RaycastHit2D hit;
+        private LayerMask layerMask;
+
+        private RaycastHit2D[] hits = new RaycastHit2D[2];
 
         [SerializeField] private Rigidbody2D rig;
         [SerializeField] private CircleCollider2D col;
@@ -27,13 +29,14 @@ namespace Katniss
             new Vector3(-1, -1), new Vector3(0, -1), new Vector3(1, -1)
         };
 
-        private void Start()
+        private void Awake()
         {
             bloodLayer = LayerMask.NameToLayer("Blood Particle");
             penLayer = LayerMask.NameToLayer("Pen");
             blindLineLayer = LayerMask.NameToLayer("Blind Line");
 
-            bloodLayerMask = 1 << bloodLayer;
+            layerMask = 1 << bloodLayer | 1 << penLayer;
+            rayDistance = col.radius * 2;
         }
 
         public void SetPool(IObjectPool<BloodParticle> pool)
@@ -43,15 +46,19 @@ namespace Katniss
 
         public bool CheckByRay(int i)
         {
-            hit = Physics2D.Raycast(transform.position, transform.position + directions[i], rayDistance, 1 << 21);
+            hitCount = col.Raycast((Vector2)transform.position + (Vector2)directions[i], hits, rayDistance, layerMask);
 
-            if (hit)
+            if (hitCount > 0)
             {
-                Debug.Log("blocked");
                 return false;
             }
             else
                 return true;
+        }
+
+        public void movePos(Vector3 pos, int i)
+        {
+            transform.position = pos + directions[i];
         }
     }
 }
