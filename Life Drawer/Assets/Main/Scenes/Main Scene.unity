@@ -2415,6 +2415,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4eb8ae034224c4cadf2295a11069f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &473948659 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2201757169136747095, guid: b62ff5633df494047a8a465018b06f60, type: 3}
+  m_PrefabInstance: {fileID: 1130837290}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3dced86a7bf845f4942900901dbdbe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &477212827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3417,14 +3428,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 468305841}
-  _levelUI: {fileID: 0}
+  _levelUI: {fileID: 1654546443}
   _nextButton: {fileID: 731581301}
   _retryButton: {fileID: 1244239559}
   _failedObj: {fileID: 1936183095}
   _successObj: {fileID: 1204415373}
   _successVFX: {fileID: 1046268868}
   _successBackLight: {fileID: 269230703}
-  _pen: {fileID: 0}
+  _pen: {fileID: 655369696}
 --- !u!114 &644664309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5271,7 +5282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1050469354
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8777,6 +8788,7 @@ GameObject:
   - component: {fileID: 1654546442}
   - component: {fileID: 1654546441}
   - component: {fileID: 1654546440}
+  - component: {fileID: 1654546443}
   m_Layer: 0
   m_Name: World Canvas
   m_TagString: Untagged
@@ -8872,6 +8884,21 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1654546443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654546438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b22a4140728464f61a1e613cc5ee8e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level1: {fileID: 2066279506}
+  level2: {fileID: 2017675802}
+  level3: {fileID: 1050469353}
 --- !u!1001 &1662576706
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10332,6 +10359,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8005562916757842383, guid: 0bd8bc70e1f0c44dfad2eb4316b735d8, type: 3}
+      propertyPath: _pen
+      value: 
+      objectReference: {fileID: 473948659}
     - target: {fileID: 8350208630291011175, guid: 0bd8bc70e1f0c44dfad2eb4316b735d8, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -11156,7 +11187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2017675803
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12794,6 +12825,10 @@ PrefabInstance:
     - target: {fileID: 1617775658037289099, guid: e897f5a59e25e8048a18dbb7ec482942, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2448538049904091907, guid: e897f5a59e25e8048a18dbb7ec482942, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5364507177912613708, guid: e897f5a59e25e8048a18dbb7ec482942, type: 3}
       propertyPath: m_Name

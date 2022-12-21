@@ -18,10 +18,14 @@ namespace Katniss
         {
             if (currentState != null)
             {
+                Debug.Log(currentState);
                 currentState.OnExit();
             }
 
+            if(currentState == nextState) return;
+            
             currentState = nextState;
+            Debug.Log(currentState);
             currentState.OnEnter(this);
             StartCoroutine(currentState.Update());
         }
