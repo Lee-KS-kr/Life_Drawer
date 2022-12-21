@@ -11,7 +11,6 @@ namespace Katniss
         private int count = 0;
 
         private BloodParticle firstBloodParticle;
-        private BloodParticle nextBloodParticle;
 
         [SerializeField] BloodParticle bloodParticlePrefab;
 
@@ -60,7 +59,7 @@ namespace Katniss
 
         private void DestroyBloodParticle(BloodParticle bloodParticle)
         {
-            // Destroy(bloodParticle.gameObject);
+            Destroy(bloodParticle.gameObject);
         }
 
         private void Update()
@@ -79,18 +78,16 @@ namespace Katniss
 
         IEnumerator duplicateBloodParticle(BloodParticle bloodParticle)
         {
-            Debug.Log(0);
             yield return null;
 
             for (int i = 0; i < 8; i++)
             {
-                Debug.Log(1);
                 if (bloodParticlePoolMaxSize <= count)
                     yield break;
 
                 if (bloodParticle.CheckByRay(i))
                 {
-                    nextBloodParticle = bloodParticlePool.Get();
+                    var nextBloodParticle = bloodParticlePool.Get();
                     nextBloodParticle.movePos(bloodParticle.transform.position, i);
                     StartCoroutine(duplicateBloodParticle(nextBloodParticle));
                 }
