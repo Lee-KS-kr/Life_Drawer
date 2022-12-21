@@ -91,6 +91,7 @@ namespace Mizu
             positionCount++;
             positionIndex++;
 
+            //Katniss~
             if (isInnerLine)
             {
                 angle = Math.Atan2(newPoint.y, newPoint.x);
@@ -103,6 +104,7 @@ namespace Mizu
                 newPoint.x += (penLineWidth / 2 * (float)Math.Cos(angle));
                 newPoint.y += (penLineWidth / 2 * (float)Math.Sin(angle));
             }
+            //~Katniss
 
             _lineRenderer.positionCount = positionCount;
             _lineRenderer.SetPosition(positionIndex, newPoint);
