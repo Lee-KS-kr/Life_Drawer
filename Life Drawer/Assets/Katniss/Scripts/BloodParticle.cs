@@ -36,7 +36,7 @@ namespace Katniss
             blindLineLayer = LayerMask.NameToLayer("Blind Line");
 
             layerMask = 1 << bloodLayer | 1 << penLayer | 1 << blindLineLayer;
-            rayDistance = col.radius * 6f;
+            rayDistance = col.radius * 7.5f;
         }
 
         public void SetPool(IObjectPool<BloodParticle> pool)
@@ -47,6 +47,7 @@ namespace Katniss
         public bool CheckByRay(int i)
         {
             hitCount = col.Raycast((Vector2)transform.position + (Vector2)directions[i], hits, rayDistance, layerMask);
+
 
             if (hitCount > 0)
             {
