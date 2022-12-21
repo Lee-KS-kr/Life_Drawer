@@ -117,14 +117,14 @@ namespace Mizu
             _lineRenderer.positionCount = positionCount;
             _lineRenderer.SetPosition(positionIndex, newPoint);
             points.Add(newPoint);
-            meshPoints.Add((Vector3)newPoint);
+            // meshPoints.Add((Vector3)newPoint);
 
-            if (positionCount > 2)
-            {
-                meshTrianglePoints.Add(0);
-                meshTrianglePoints.Add(positionIndex - 1);
-                meshTrianglePoints.Add(positionIndex);
-            }
+            // if (positionCount > 2)
+            // {
+            //     meshTrianglePoints.Add(0);
+            //     meshTrianglePoints.Add(positionIndex - 1);
+            //     meshTrianglePoints.Add(positionIndex);
+            // }
 
             newPoint += (Vector2)_newLine;
             points2.Add(newPoint);
@@ -137,20 +137,20 @@ namespace Mizu
             _edgeCollider.SetPoints(points);
             endDrawingAction?.Invoke(points);
 
-            if (meshFilter!=null)
+            if (meshFilter != null)
             {
-                makeMesh();
+                // makeMesh();
             }
         }
 
-        private void makeMesh()
-        {
-            //Katniss~
-            mesh = new Mesh();
-            mesh.vertices = meshPoints.ToArray();
-            mesh.triangles = meshTrianglePoints.ToArray();
-            meshFilter.mesh = mesh;
-            //~Katniss
-        }
+        // private void makeMesh()
+        // {
+        //     //Katniss~
+        //     mesh = new Mesh();
+        //     mesh.vertices = meshPoints.ToArray();
+        //     mesh.triangles = meshTrianglePoints.ToArray();
+        //     meshFilter.mesh = mesh;
+        //     //~Katniss
+        // }
     }
 }

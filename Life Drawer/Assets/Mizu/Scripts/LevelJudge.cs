@@ -8,7 +8,7 @@ namespace Mizu
     public class LevelJudge : MonoBehaviour
     {
         [SerializeField] private WaterFallJudge _waterFallJudge;
-        
+
         [SerializeField] private PenInside _penInside;
         [SerializeField] private UIManager _uiManager;
 
@@ -18,18 +18,20 @@ namespace Mizu
             _penInside.gameSuccessAction += SetGameSuccess;
             _penInside.gameFailedAction -= SetGameFailed;
             _penInside.gameFailedAction += SetGameFailed;
-            
+
             _waterFallJudge.gameFailedAction -= SetGameFailed;
             _waterFallJudge.gameFailedAction += SetGameFailed;
         }
 
         private void SetGameSuccess()
         {
+            Debug.Log("su");
             _uiManager.SetSuccess();
         }
 
         private void SetGameFailed()
         {
+            Debug.Log("fa");
             _uiManager.SetFailed();
         }
 

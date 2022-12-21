@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6150897044173525590}
   - component: {fileID: 8035080475332256755}
   - component: {fileID: 6319440631247959367}
+  - component: {fileID: 2543139888503380334}
   m_Layer: 5
   m_Name: Heart
   m_TagString: Untagged
@@ -77,6 +78,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2543139888503380334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3535672764992206515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 134be80f9d8fa4cd692b410e712644ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bloodParticlePrefab: {fileID: 7119789797464797839, guid: 58a6489ab9b744570af4eacb7849a83a, type: 3}
 --- !u!1 &7986225764541039665
 GameObject:
   m_ObjectHideFlags: 0

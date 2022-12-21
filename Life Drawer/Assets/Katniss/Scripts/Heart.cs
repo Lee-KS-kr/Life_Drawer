@@ -43,6 +43,7 @@ namespace Katniss
         {
             BloodParticle bloodParticle = Instantiate(bloodParticlePrefab);
             bloodParticle.SetPool(bloodParticlePool);
+            bloodParticle.transform.position = transform.position;
             DontDestroyOnLoad(bloodParticle);
             return bloodParticle;
         }
@@ -114,21 +115,25 @@ namespace Katniss
 
         IEnumerator beatingEffect()
         {
-            var effectSize = 1f;
+            var effectSize = 0.15f;
             var effectTime = 0.5f;
 
             size = transform.localScale.x;
 
             for (var time = 0f; ; time += Time.deltaTime)
             {
-                if (time > effectTime)
+                if (time > effectTime * 1.2f)
                 {
                     time = 0;
                     transform.localScale = Vector3.one * size;
                 }
-                else
+                if (time < effectTime)
                 {
                     transform.localScale = Vector3.one * (size + effectSize * time / effectTime);
+                }
+                else
+                {
+                    transform.localScale = Vector3.one * (size + effectSize * (1.2f * effectTime - time) / (0.2f * effectTime));
                 }
 
                 yield return null;
