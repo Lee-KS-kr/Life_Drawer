@@ -21,9 +21,13 @@ namespace Mizu
         private Vector3 _camPosZ;
         private List<Vector2> points;
         private List<Vector2> points2;
+        private List<Vector3> meshPoints;
+        private List<int> meshTrianglePoints;
         private Vector3 _newLine;
+        private Mesh mesh;
 
         [SerializeField] private Camera _cam;
+        [SerializeField] private MeshFilter meshFilter;
         public Action<List<Vector2>> endDrawingAction;
 
         [Header("Pen Line Settings")]
@@ -45,6 +49,10 @@ namespace Mizu
 
             points = new List<Vector2>();
             points2 = new List<Vector2>();
+
+            meshPoints = new List<Vector3>();
+            meshTrianglePoints = new List<int>();
+
             _newLine = new Vector3(penLineWidth / 2, penLineWidth / 2, 0);
         }
 
@@ -109,6 +117,14 @@ namespace Mizu
             _lineRenderer.positionCount = positionCount;
             _lineRenderer.SetPosition(positionIndex, newPoint);
             points.Add(newPoint);
+            meshPoints.Add((Vector3)newPoint);
+
+            if (positionCount > 2)
+            {
+                meshTrianglePoints.Add(0);
+                meshTrianglePoints.Add(positionIndex - 1);
+                meshTrianglePoints.Add(positionIndex);
+            }
 
             newPoint += (Vector2)_newLine;
             points2.Add(newPoint);
@@ -120,6 +136,21 @@ namespace Mizu
 
             _edgeCollider.SetPoints(points);
             endDrawingAction?.Invoke(points);
+
+            if (meshFilter!=null)
+            {
+                makeMesh();
+            }
+        }
+
+        private void makeMesh()
+        {
+            //Katniss~
+            mesh = new Mesh();
+            mesh.vertices = meshPoints.ToArray();
+            mesh.triangles = meshTrianglePoints.ToArray();
+            meshFilter.mesh = mesh;
+            //~Katniss
         }
     }
 }
