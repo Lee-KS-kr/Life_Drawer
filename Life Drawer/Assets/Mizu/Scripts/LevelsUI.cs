@@ -35,10 +35,10 @@ namespace Mizu
         private void Start()
         {
             includeCounts = new[] {0, 4, 5, 8};
-            stage = (int)NowStage;
 
             OnInitialize();
-            StartCoroutine(OnSetStage());
+            //StartCoroutine(OnSetStage());
+            ChangeLevel(1);
         }
 
         private void OnInitialize()
@@ -65,11 +65,12 @@ namespace Mizu
             yield return new WaitForSeconds(1f);
 
             ChangeLevel(stage);
+            yield return null;
         }
 
         public void ChangeLevel(int newLevel)
         {
-            player.SetState(new Starting());
+            //player.SetState(new Starting());
 
             if ((int)NowStage == newLevel) return;
 
