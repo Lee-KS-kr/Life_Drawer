@@ -14,18 +14,19 @@ namespace Katniss
         public void OnEnter(Player _player)
         {
             player = _player;
+            fadeInOutCanvas = GameObject.Find("StartingBG").GetComponent<CanvasRenderer>();
         }
 
         public void OnExit()
         {
-            player.SetState(new Ready());
         }
 
         public IEnumerator Update()
         {
-            var fadeInOutTime = 0.5f;
+            var fadeInOutTime = 1f;
 
             fadeInOutCanvas.gameObject.SetActive(true);
+            Debug.Log("turn on");
             color = fadeInOutCanvas.GetColor();
 
             for (var time = 0f; time < fadeInOutTime * 2; time += Time.deltaTime)
@@ -38,14 +39,14 @@ namespace Katniss
                 }
                 else
                 {
-                    color.a = (fadeInOutTime - time) / fadeInOutTime;
+                    color.a = (fadeInOutTime * 2 - time) / fadeInOutTime;
                     fadeInOutCanvas.SetColor(color);
                     yield return null;
                 }
             }
 
             fadeInOutCanvas.gameObject.SetActive(false);
-            OnExit();
+            Debug.Log("turn off");
         }
     }
 }

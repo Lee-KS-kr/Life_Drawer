@@ -19,6 +19,7 @@ namespace Mizu
         private int bloodLayer;
 
         private bool isAllIncluded = false;
+        private bool isBloodOut = false;
         private bool isBloodStart = false;
 
         private float bleedingTime = 0f;
@@ -47,7 +48,7 @@ namespace Mizu
             if (!isBloodStart) return;
 
             bleedingTime += Time.deltaTime;
-            if(bleedingTime > 5f)
+            if(bleedingTime > 10f)
             {
                 if (isAllIncluded)
                     Success();
@@ -56,6 +57,7 @@ namespace Mizu
 
         private void DrawPolygon(List<Vector2> list)
         {
+            isBloodStart = true;
             gameObject.layer = 0;
             _polygonCollider.SetPath(0, list);
         }
@@ -78,14 +80,14 @@ namespace Mizu
         {
             if(collision.gameObject.layer == bloodLayer)
             {
-                BloodCount();
+                Failed();
             }
         }
 
         private void BloodCount()
         {
             bloodCount++;
-            if (bloodCount > 3)
+            if (bloodCount > 1)
                 Failed();
         }
 
@@ -103,13 +105,21 @@ namespace Mizu
 
         private void Success()
         {
+            if (isBloodOut) return;
+
             gameSuccessAction?.Invoke();
+            isBloodStart = false;
         }
 
         private void Failed()
         {
-            //gameFailedAction?.Invoke();
-            Physics2D.gravity = new Vector2(0, -3000f);
+            if (isBloodOut) return;
+
+            isBloodOut = true;
+
+            gameFailedAction?.Invoke();
+            Physics2D.gravity = new Vector2(0, -5000f);
+            Debug.Log($"{Physics2D.gravity}");
         }
     }
 }

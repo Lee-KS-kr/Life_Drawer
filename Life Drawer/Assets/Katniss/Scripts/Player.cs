@@ -11,18 +11,18 @@ namespace Katniss
 
         private void Start()
         {
-            SetState(new Ready());
+            SetState(new Starting());
         }
 
         public void SetState(IState nextState)
         {
+            Debug.Log(currentState);
+
             if (currentState != null)
             {
                 Debug.Log(currentState);
                 currentState.OnExit();
             }
-
-            if(currentState == nextState) return;
             
             currentState = nextState;
             Debug.Log(currentState);
