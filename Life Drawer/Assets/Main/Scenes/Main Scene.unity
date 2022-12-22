@@ -12834,6 +12834,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1204415374}
     m_Modifications:
+    - target: {fileID: 5147173848467417596, guid: d46ef4b9959be3844b2753635ee08e08, type: 3}
+      propertyPath: m_Color.a
+      value: 0.078431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147173848467417596, guid: d46ef4b9959be3844b2753635ee08e08, type: 3}
+      propertyPath: m_Color.b
+      value: 0.45098042
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147173848467417596, guid: d46ef4b9959be3844b2753635ee08e08, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9313011
+      objectReference: {fileID: 0}
     - target: {fileID: 5147173848467417597, guid: d46ef4b9959be3844b2753635ee08e08, type: 3}
       propertyPath: m_SizeDelta.x
       value: 52.2605
@@ -12849,6 +12861,18 @@ PrefabInstance:
     - target: {fileID: 5147173848467417597, guid: d46ef4b9959be3844b2753635ee08e08, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147173848872063996, guid: d46ef4b9959be3844b2753635ee08e08, type: 3}
+      propertyPath: m_Color.a
+      value: 0.078431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147173848872063996, guid: d46ef4b9959be3844b2753635ee08e08, type: 3}
+      propertyPath: m_Color.b
+      value: 0.45098042
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147173848872063996, guid: d46ef4b9959be3844b2753635ee08e08, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9313011
       objectReference: {fileID: 0}
     - target: {fileID: 5147173848872063997, guid: d46ef4b9959be3844b2753635ee08e08, type: 3}
       propertyPath: m_SizeDelta.x
@@ -12953,6 +12977,18 @@ PrefabInstance:
     - target: {fileID: 5147173848900287089, guid: d46ef4b9959be3844b2753635ee08e08, type: 3}
       propertyPath: m_Name
       value: Light Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147173849468548344, guid: d46ef4b9959be3844b2753635ee08e08, type: 3}
+      propertyPath: m_Color.a
+      value: 0.078431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147173849468548344, guid: d46ef4b9959be3844b2753635ee08e08, type: 3}
+      propertyPath: m_Color.b
+      value: 0.45098042
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147173849468548344, guid: d46ef4b9959be3844b2753635ee08e08, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9313011
       objectReference: {fileID: 0}
     - target: {fileID: 5147173849468548345, guid: d46ef4b9959be3844b2753635ee08e08, type: 3}
       propertyPath: m_SizeDelta.x
