@@ -3785,6 +3785,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _penInside: {fileID: 1885526266}
   _uiManager: {fileID: 644664308}
+  _fallDown: {fileID: 0}
+  _foundInclude: []
 --- !u!1 &655369696
 GameObject:
   m_ObjectHideFlags: 0
@@ -3843,7 +3845,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7cbac15a8a863704ca5aff88bb56a445, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e26111600ae6664bb81bef6ae65cace, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9107,6 +9109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b22a4140728464f61a1e613cc5ee8e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dummy: {fileID: 0}
   level1: {fileID: 2066279506}
   level2: {fileID: 2017675802}
   level3: {fileID: 1050469353}
@@ -10067,7 +10070,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 64
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 9eb5939b453ec465e8fac5a4f2e7b3d0, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
