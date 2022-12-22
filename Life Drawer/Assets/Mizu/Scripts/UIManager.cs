@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Katniss;
 
@@ -41,6 +42,7 @@ namespace Mizu
         private void OnNextButton()
         {
             _levelUI.ChangeLevel((int)_levelUI.NowStage + 1);
+            SceneManager.LoadScene(0);
             _player.SetState(new Starting());
         }
 
@@ -48,6 +50,7 @@ namespace Mizu
         {
             _levelUI.RetryGame();
             _player.SetState(new Starting());
+            SceneManager.LoadScene(0);
         }
 
         public void SetSuccess()
@@ -64,7 +67,7 @@ namespace Mizu
             Debug.Log("Failed!");
             _normalEye.SetActive(false);
             _dieEye.SetActive(true);
-            _player.SetState(new Starting());
+            SceneManager.LoadScene(0);
         }
 
         IEnumerator backLightRotEffect()

@@ -23,7 +23,7 @@ namespace Katniss
 
         public IEnumerator Update()
         {
-            var fadeInOutTime = 1f;
+            var fadeInOutTime = 1.2f;
 
             fadeInOutCanvas.SetColor(Color.black);
             Debug.Log("turn on");
