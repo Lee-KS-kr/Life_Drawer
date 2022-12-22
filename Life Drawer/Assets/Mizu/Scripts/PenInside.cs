@@ -26,6 +26,8 @@ namespace Mizu
 
         public Action gameSuccessAction;
         public Action gameFailedAction;
+        public Action<List<GameObject>> foundObjectAction;
+        [SerializeField] private List<GameObject> foundObjs = new List<GameObject>();
 
         private void Awake()
         {
@@ -52,6 +54,8 @@ namespace Mizu
             {
                 if (isAllIncluded)
                     Success();
+                else
+                    Failed();
             }
         }
 
@@ -66,6 +70,10 @@ namespace Mizu
         {
             if (col.gameObject.layer == includeLayer)
             {
+                if (foundObjs.Contains(col.gameObject)) return;
+
+                foundObjs.Add(col.transform.parent.gameObject);
+                foundObjectAction?.Invoke(foundObjs);
                 CountInclude();
             }
 
@@ -82,13 +90,6 @@ namespace Mizu
             {
                 Failed();
             }
-        }
-
-        private void BloodCount()
-        {
-            bloodCount++;
-            if (bloodCount > 1)
-                Failed();
         }
 
         private void CountInclude()
@@ -119,7 +120,6 @@ namespace Mizu
 
             gameFailedAction?.Invoke();
             Physics2D.gravity = new Vector2(0, -5000f);
-            Debug.Log($"{Physics2D.gravity}");
         }
     }
 }

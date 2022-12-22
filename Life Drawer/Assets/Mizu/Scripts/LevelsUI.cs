@@ -16,6 +16,7 @@ namespace Mizu
             level3,
         }
 
+        [SerializeField] private GameObject dummy;
         [SerializeField] private GameObject level1;
         [SerializeField] private GameObject level2;
         [SerializeField] private GameObject level3;
@@ -24,14 +25,18 @@ namespace Mizu
 
         private Dictionary<LevelStages, GameObject> levelDictionary = new Dictionary<LevelStages, GameObject>();
 
-        public LevelStages NowStage { get; private set; } = LevelStages.Dummy;
         public Action<int> includeCountAction;
+        public LevelStages NowStage { get; private set; } = LevelStages.Dummy;
+        private static int stage = 0;
 
         private void Start()
         {
             includeCounts = new[] {0, 4, 5, 8};
+            stage = (int)NowStage;
+
             OnInitialize();
-            ChangeLevel(1);
+            OnSetStage();
+            ChangeLevel(3);
         }
 
         private void OnInitialize()
@@ -40,9 +45,17 @@ namespace Mizu
             level2.SetActive(false);
             level3.SetActive(false);
 
+            levelDictionary.Add(LevelStages.Dummy, dummy);
             levelDictionary.Add(LevelStages.level1, level1);
             levelDictionary.Add(LevelStages.level2, level2);
             levelDictionary.Add(LevelStages.level3, level3);
+        }
+
+        private void OnSetStage()
+        {
+            NowStage = (LevelStages)stage;
+            levelDictionary.TryGetValue((LevelStages)stage, out var obj);
+            obj?.SetActive(true);
         }
 
         public void ChangeLevel(int newLevel)
@@ -53,6 +66,7 @@ namespace Mizu
             obj?.SetActive(false);
 
             NowStage = (LevelStages)newLevel;
+            stage = (int)NowStage;
             levelDictionary.TryGetValue(NowStage, out obj);
             obj?.SetActive(true);
             includeCountAction?.Invoke(includeCounts[(int) NowStage]);
