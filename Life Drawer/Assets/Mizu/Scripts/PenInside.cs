@@ -48,7 +48,7 @@ namespace Mizu
             if (!isBloodStart) return;
 
             bleedingTime += Time.deltaTime;
-            if(bleedingTime > 10f)
+            if(bleedingTime > 3f)
             {
                 if (isAllIncluded)
                     Success();
