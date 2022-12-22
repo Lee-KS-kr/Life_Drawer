@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3874,6 +3874,7 @@ GameObject:
   - component: {fileID: 655369699}
   - component: {fileID: 655369698}
   - component: {fileID: 655369700}
+  - component: {fileID: 655369701}
   m_Layer: 5
   m_Name: Pen
   m_TagString: Untagged
@@ -3952,6 +3953,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   penImage: {fileID: 655369698}
+--- !u!95 &655369701
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655369696}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 18454920377cb924fa60ed3f1964b479, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &667237466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4281,7 +4302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5305738786573935046, guid: dfb34112c899b7448ac5947b2d705b60, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.79335386
+      value: 0.73903334
       objectReference: {fileID: 0}
     - target: {fileID: 5305738786573935046, guid: dfb34112c899b7448ac5947b2d705b60, type: 3}
       propertyPath: m_LocalRotation.x
@@ -4293,15 +4314,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5305738786573935046, guid: dfb34112c899b7448ac5947b2d705b60, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.60876083
+      value: 0.67366886
       objectReference: {fileID: 0}
     - target: {fileID: 5305738786573935046, guid: dfb34112c899b7448ac5947b2d705b60, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 5.3375
+      value: 6.17
       objectReference: {fileID: 0}
     - target: {fileID: 5305738786573935046, guid: dfb34112c899b7448ac5947b2d705b60, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 10.7269
+      value: 10.65
       objectReference: {fileID: 0}
     - target: {fileID: 5305738786573935046, guid: dfb34112c899b7448ac5947b2d705b60, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4313,7 +4334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5305738786573935046, guid: dfb34112c899b7448ac5947b2d705b60, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 75
+      value: 84.702
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfb34112c899b7448ac5947b2d705b60, type: 3}
@@ -5164,11 +5185,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7786289362698718401, guid: 00dd027ff552506429652ea1c55be129, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 6.57
+      value: 7.15
       objectReference: {fileID: 0}
     - target: {fileID: 7786289362698718401, guid: 00dd027ff552506429652ea1c55be129, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 4.58
+      value: 1.34
       objectReference: {fileID: 0}
     - target: {fileID: 7786289362698718401, guid: 00dd027ff552506429652ea1c55be129, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6406,7 +6427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5305738786573935046, guid: dfb34112c899b7448ac5947b2d705b60, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -3.363
+      value: -5.68
       objectReference: {fileID: 0}
     - target: {fileID: 5305738786573935046, guid: dfb34112c899b7448ac5947b2d705b60, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -7512,11 +7533,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5305738786573935046, guid: dfb34112c899b7448ac5947b2d705b60, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 6.2448
+      value: 8.56
       objectReference: {fileID: 0}
     - target: {fileID: 5305738786573935046, guid: dfb34112c899b7448ac5947b2d705b60, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -9.7673
+      value: -8.44
       objectReference: {fileID: 0}
     - target: {fileID: 5305738786573935046, guid: dfb34112c899b7448ac5947b2d705b60, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -10927,7 +10948,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.2, y: -6.9}
+  m_AnchoredPosition: {x: -0.32, y: -7.59}
   m_SizeDelta: {x: 20.0518, y: 9.986799}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1912376125
@@ -11426,7 +11447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.77003, y: -11.13}
+  m_AnchoredPosition: {x: -0.77003, y: -37.23}
   m_SizeDelta: {x: 10.689, y: 5.324}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1971331326
@@ -12615,11 +12636,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5305738786573935046, guid: dfb34112c899b7448ac5947b2d705b60, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -8.8476
+      value: -9.44
       objectReference: {fileID: 0}
     - target: {fileID: 5305738786573935046, guid: dfb34112c899b7448ac5947b2d705b60, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 8.7889
+      value: 9.18
       objectReference: {fileID: 0}
     - target: {fileID: 5305738786573935046, guid: dfb34112c899b7448ac5947b2d705b60, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
