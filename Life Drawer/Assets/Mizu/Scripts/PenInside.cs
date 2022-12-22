@@ -18,6 +18,11 @@ namespace Mizu
         private int dontIncludeLayer;
         private int bloodLayer;
 
+        private bool isAllIncluded = false;
+        private bool isBloodStart = false;
+
+        private float bleedingTime = 0f;
+
         public Action gameSuccessAction;
         public Action gameFailedAction;
 
@@ -37,13 +42,25 @@ namespace Mizu
             _pen.endDrawingAction += DrawPolygon;
         }
 
+        private void Update()
+        {
+            if (!isBloodStart) return;
+
+            bleedingTime += Time.deltaTime;
+            if(bleedingTime > 5f)
+            {
+                if (isAllIncluded)
+                    Success();
+            }
+        }
+
         private void DrawPolygon(List<Vector2> list)
         {
             gameObject.layer = 0;
             _polygonCollider.SetPath(0, list);
         }
 
-        private void OnTriggerStay2D(Collider2D col)
+        private void OnTriggerEnter2D(Collider2D col)
         {
             if (col.gameObject.layer == includeLayer)
             {
@@ -69,19 +86,30 @@ namespace Mizu
         {
             bloodCount++;
             if (bloodCount > 3)
-                gameFailedAction?.Invoke();
+                Failed();
         }
 
         private void CountInclude()
         {
             nowCount++;
-            if(nowCount == needInclude)
-                gameSuccessAction?.Invoke();
+            if (nowCount == needInclude)
+                isAllIncluded = true;
         }
 
         public void SetIncludeCount(int count)
         {
             needInclude = count;
+        }
+
+        private void Success()
+        {
+            gameSuccessAction?.Invoke();
+        }
+
+        private void Failed()
+        {
+            //gameFailedAction?.Invoke();
+            Physics2D.gravity = new Vector2(0, -3000f);
         }
     }
 }
