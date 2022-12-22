@@ -11,6 +11,7 @@ namespace Katniss
         private Vector3 scale;
         [SerializeField] float effectSize = 2f;
         float effectTime = 0.5f;
+        float rotSpeed = 5f;
 
         [SerializeField] private PenInside _penInside;
 
@@ -37,11 +38,13 @@ namespace Katniss
                 {
                     effectScale.x = scale.x + time * effectSize / effectTime;
                     effectScale.y = scale.y - time * effectSize / effectTime;
+                    transform.Rotate(0, 0, rotSpeed * Time.deltaTime);
                 }
                 else
                 {
                     effectScale.x = scale.x + (effectTime * 2 - time) * effectSize / effectTime;
                     effectScale.y = scale.y - (effectTime * 2 - time) * effectSize / effectTime;
+                    transform.Rotate(0, 0, -1 * rotSpeed * Time.deltaTime);
                 }
 
                 gameObject.transform.localScale = effectScale;
@@ -58,11 +61,13 @@ namespace Katniss
                 {
                     effectScale.x = scale.x - time * effectSize / effectTime;
                     effectScale.y = scale.y + time * effectSize / effectTime;
+                    transform.Rotate(0, 0, rotSpeed * Time.deltaTime);
                 }
                 else
                 {
                     effectScale.x = scale.x - (effectTime * 2 - time) * effectSize / effectTime;
                     effectScale.y = scale.y + (effectTime * 2 - time) * effectSize / effectTime;
+                    transform.Rotate(0, 0, -1 * rotSpeed * Time.deltaTime);
                 }
 
                 gameObject.transform.localScale = effectScale;

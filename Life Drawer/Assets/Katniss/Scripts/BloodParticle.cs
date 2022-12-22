@@ -36,7 +36,7 @@ namespace Katniss
             blindLineLayer = LayerMask.NameToLayer("Blind Line");
 
             layerMask = 1 << bloodLayer | 1 << penLayer | 1 << blindLineLayer;
-            rayDistance = col.radius * 5f;
+            rayDistance = col.radius * 4f;
         }
 
         public void SetPool(IObjectPool<BloodParticle> pool)
