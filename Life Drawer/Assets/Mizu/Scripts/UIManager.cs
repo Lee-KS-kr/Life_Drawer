@@ -19,14 +19,21 @@ namespace Mizu
         [SerializeField] private GameObject _successObj;
         [SerializeField] private GameObject _successVFX;
         [SerializeField] private GameObject _successBackLight;
-        [SerializeField] private GameObject _pen;
 
         [SerializeField] private GameObject _normalEye;
         [SerializeField] private GameObject _dieEye;
 
+        [SerializeField] private GameObject _guideLine;
+
         private void Start()
         {
             Initialize();
+        }
+
+        private void Update()
+        {
+            if(Input.GetMouseButtonDown(0))
+                _guideLine.SetActive(false);
         }
 
         private void Initialize()
@@ -36,7 +43,6 @@ namespace Mizu
 
             _successObj.SetActive(false);
             _successVFX.SetActive(false);
-            _pen.SetActive(false);
         }
 
         private void OnNextButton()

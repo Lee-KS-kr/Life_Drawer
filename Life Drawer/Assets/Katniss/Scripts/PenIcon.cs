@@ -1,30 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Katniss
 {
     public class PenIcon : MonoBehaviour
     {
+        private Vector3 pos;
+        [SerializeField] private Image penImage;
+
         private void Start()
         {
-            gameObject.SetActive(false);
+            penImage.enabled = false;
         }
 
         private void Update()
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("aa");
-                gameObject.SetActive(true);
+                penImage.enabled = true;
             }
             if (Input.GetMouseButton(0))
             {
-                gameObject.transform.position = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+                pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                pos.z -= Camera.main.transform.position.z;
+                gameObject.transform.position = pos;
             }
             if (Input.GetMouseButtonUp(0))
             {
-                gameObject.SetActive(false);
+                penImage.enabled = false;
             }
         }
     }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8035080475332256755}
   - component: {fileID: 6319440631247959367}
   - component: {fileID: 2543139888503380334}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.2901961, b: 0.2901961, a: 1}
+  m_Color: {r: 1, g: 0.54402506, b: 0.74518526, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
