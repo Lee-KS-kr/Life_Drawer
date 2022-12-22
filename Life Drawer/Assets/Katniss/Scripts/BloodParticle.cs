@@ -51,8 +51,6 @@ namespace Katniss
 
             if (hitCount > 0)
             {
-                Debug.Log(hits[0].collider.gameObject.name);
-                Debug.Log(hits[0].collider.gameObject.layer);
                 return false;
             }
             else
