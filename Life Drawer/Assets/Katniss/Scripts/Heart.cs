@@ -44,7 +44,7 @@ namespace Katniss
             BloodParticle bloodParticle = Instantiate(bloodParticlePrefab);
             bloodParticle.SetPool(bloodParticlePool);
             bloodParticle.transform.position = transform.position;
-            DontDestroyOnLoad(bloodParticle);
+            //DontDestroyOnLoad(bloodParticle);
             return bloodParticle;
         }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Katniss
 {
@@ -9,12 +10,12 @@ namespace Katniss
         private Player player;
         private Color color;
 
-        [SerializeField] private CanvasRenderer fadeInOutCanvas;
+        [SerializeField] private Image fadeInOutCanvas;
 
         public void OnEnter(Player _player)
         {
             player = _player;
-            fadeInOutCanvas = GameObject.Find("StartingBG").GetComponent<CanvasRenderer>();
+            fadeInOutCanvas = GameObject.Find("StartingBG").GetComponent<Image>();
         }
 
         public void OnExit()
@@ -25,27 +26,27 @@ namespace Katniss
         {
             var fadeInOutTime = 1.2f;
 
-            fadeInOutCanvas.SetColor(Color.black);
+   
             Debug.Log("turn on");
-            color = fadeInOutCanvas.GetColor();
+            color = fadeInOutCanvas.color;
 
             for (var time = 0f; time < fadeInOutTime * 2; time += Time.deltaTime)
             {
                 if (time < fadeInOutTime)
                 {
                     color.a = time / fadeInOutTime;
-                    fadeInOutCanvas.SetColor(color);
+                    fadeInOutCanvas.color = color;
                     yield return null;
                 }
                 else
                 {
                     color.a = (fadeInOutTime * 2 - time) / fadeInOutTime;
-                    fadeInOutCanvas.SetColor(color);
+                    fadeInOutCanvas.color = color;
                     yield return null;
                 }
             }
 
-            fadeInOutCanvas.SetColor(Color.clear);
+            fadeInOutCanvas.color = Color.clear;
             Debug.Log("turn off");
         }
     }

@@ -34,7 +34,7 @@ namespace Mizu
 
         private void Start()
         {
-            includeCounts = new[] {0, 4, 5, 8};
+            includeCounts = new[] {0, 4, 5, 7};
 
             OnInitialize();
             //StartCoroutine(OnSetStage());
@@ -70,8 +70,6 @@ namespace Mizu
 
         public void ChangeLevel(int newLevel)
         {
-            //player.SetState(new Starting());
-
             if ((int)NowStage == newLevel) return;
 
             levelDictionary.TryGetValue(NowStage, out var obj);

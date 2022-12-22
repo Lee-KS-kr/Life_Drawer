@@ -9,6 +9,7 @@ namespace Katniss
     {
         private Vector3 pos;
         [SerializeField] private Image penImage;
+        [SerializeField] private Animator animator;
 
         private void Start()
         {
@@ -19,12 +20,15 @@ namespace Katniss
         {
             if (Input.GetMouseButtonDown(0))
             {
-                penImage.enabled = true;
+                if (!penImage.enabled)
+                    penImage.enabled = true;
+                animator.enabled = false;
             }
             if (Input.GetMouseButton(0))
             {
                 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 pos.z -= Camera.main.transform.position.z;
+
                 gameObject.transform.position = pos;
             }
             if (Input.GetMouseButtonUp(0))

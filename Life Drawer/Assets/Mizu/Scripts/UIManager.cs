@@ -25,6 +25,7 @@ namespace Mizu
         [SerializeField] private GameObject _dieEye;
 
         [SerializeField] private GameObject _guideLine;
+        [SerializeField] private Image startingBG;
 
         private void Start()
         {
@@ -45,20 +46,22 @@ namespace Mizu
             _nextObj.SetActive(false);
             _successObj.SetActive(false);
             _successVFX.SetActive(false);
+
+            startingBG.color = Color.clear;
         }
 
         private void OnNextButton()
         {
             _levelUI.ChangeLevel((int)_levelUI.NowStage + 1);
-            SceneManager.LoadScene(0);
             _player.SetState(new Starting());
+            StartCoroutine(RestartAfterSec());
         }
 
         private void OnRetryButton()
         {
             _levelUI.RetryGame();
             _player.SetState(new Starting());
-            SceneManager.LoadScene(0);
+            StartCoroutine(RestartAfterSec());
         }
 
         public void SetSuccess()
@@ -75,6 +78,16 @@ namespace Mizu
             Debug.Log("Failed!");
             _normalEye.SetActive(false);
             _dieEye.SetActive(true);
+
+            startingBG.color = Color.black;
+            _player.SetState(new Starting());
+
+            StartCoroutine(RestartAfterSec());
+        }
+
+        private IEnumerator RestartAfterSec()
+        {
+            yield return new WaitForSeconds(1.2f);
             SceneManager.LoadScene(0);
         }
 

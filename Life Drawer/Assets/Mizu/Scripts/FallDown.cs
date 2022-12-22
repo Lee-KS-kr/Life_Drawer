@@ -41,7 +41,7 @@ namespace Mizu
 
         private void FallObjects()
         {
-            var yPos = _fallCurve.Evaluate(elapsedTime) * 10;
+            var yPos = _fallCurve.Evaluate(elapsedTime) * 3;
             for (int i = 0; i < fallObjIdx; i++) 
             {
                 var img = _fallObjects[i].GetComponent<Image>();
