@@ -2349,7 +2349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &430818746
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3777,6 +3777,7 @@ MonoBehaviour:
   _successObj: {fileID: 1204415373}
   _successVFX: {fileID: 1046268868}
   _successBackLight: {fileID: 269230703}
+  _nextObj: {fileID: 430818745}
   _normalEye: {fileID: 1468844197}
   _dieEye: {fileID: 431750856}
   _guideLine: {fileID: 1996574520}
@@ -9181,7 +9182,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &1654546443
 MonoBehaviour:

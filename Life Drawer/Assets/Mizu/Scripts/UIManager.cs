@@ -19,6 +19,7 @@ namespace Mizu
         [SerializeField] private GameObject _successObj;
         [SerializeField] private GameObject _successVFX;
         [SerializeField] private GameObject _successBackLight;
+        [SerializeField] private GameObject _nextObj;
 
         [SerializeField] private GameObject _normalEye;
         [SerializeField] private GameObject _dieEye;
@@ -41,6 +42,7 @@ namespace Mizu
             _nextButton.onClick.AddListener(OnNextButton);
             _retryButton.onClick.AddListener(OnRetryButton);
 
+            _nextObj.SetActive(false);
             _successObj.SetActive(false);
             _successVFX.SetActive(false);
         }
@@ -80,13 +82,14 @@ namespace Mizu
         {
             var speed = 30f;
 
-            for (var time = 0f; time < 10f; time += Time.deltaTime)
+            for (var time = 0f; time < 3f; time += Time.deltaTime)
             {
                 _successBackLight.transform.Rotate(0, 0, speed * Time.deltaTime);
 
                 yield return null;
             }
 
+            _nextObj.SetActive(true);
         }
     }
 }

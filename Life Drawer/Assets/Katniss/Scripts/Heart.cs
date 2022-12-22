@@ -119,8 +119,9 @@ namespace Katniss
             var effectTime = 0.5f;
 
             size = transform.localScale.x;
+            var duration = 0f;
 
-            for (var time = 0f; ; time += Time.deltaTime)
+            for (var time = 0f; duration < 7f; time += Time.deltaTime)
             {
                 if (time > effectTime * 1.2f)
                 {
@@ -136,6 +137,7 @@ namespace Katniss
                     transform.localScale = Vector3.one * (size + effectSize * (1.2f * effectTime - time) / (0.2f * effectTime));
                 }
 
+                duration += Time.deltaTime;
                 yield return null;
             }
 
