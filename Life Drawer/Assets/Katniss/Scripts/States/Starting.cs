@@ -25,7 +25,7 @@ namespace Katniss
         {
             var fadeInOutTime = 1f;
 
-            fadeInOutCanvas.gameObject.SetActive(true);
+            fadeInOutCanvas.SetColor(Color.black);
             Debug.Log("turn on");
             color = fadeInOutCanvas.GetColor();
 
@@ -45,7 +45,7 @@ namespace Katniss
                 }
             }
 
-            fadeInOutCanvas.gameObject.SetActive(false);
+            fadeInOutCanvas.SetColor(Color.clear);
             Debug.Log("turn off");
         }
     }

@@ -16,14 +16,11 @@ namespace Katniss
 
         public void SetState(IState nextState)
         {
-            Debug.Log(currentState);
-
             if (currentState != null)
             {
-                Debug.Log(currentState);
                 currentState.OnExit();
             }
-            
+
             currentState = nextState;
             Debug.Log(currentState);
             currentState.OnEnter(this);
