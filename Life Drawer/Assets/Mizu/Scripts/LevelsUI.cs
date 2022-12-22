@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Katniss;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,8 @@ namespace Mizu
             level2,
             level3,
         }
+
+        [SerializeField] private Player player;
 
         [SerializeField] private GameObject dummy;
         [SerializeField] private GameObject level1;
@@ -35,8 +38,7 @@ namespace Mizu
             stage = (int)NowStage;
 
             OnInitialize();
-            OnSetStage();
-            ChangeLevel(3);
+            StartCoroutine(OnSetStage());
         }
 
         private void OnInitialize()
@@ -51,20 +53,30 @@ namespace Mizu
             levelDictionary.Add(LevelStages.level3, level3);
         }
 
-        private void OnSetStage()
+        private IEnumerator OnSetStage()
         {
+            if (stage == 0)
+                stage = 1;
+
             NowStage = (LevelStages)stage;
             levelDictionary.TryGetValue((LevelStages)stage, out var obj);
             obj?.SetActive(true);
+
+            yield return new WaitForSeconds(1f);
+
+            ChangeLevel(stage);
         }
 
         public void ChangeLevel(int newLevel)
         {
+            player.SetState(new Starting());
+
             if ((int)NowStage == newLevel) return;
 
             levelDictionary.TryGetValue(NowStage, out var obj);
             obj?.SetActive(false);
 
+            Debug.Log(stage);
             NowStage = (LevelStages)newLevel;
             stage = (int)NowStage;
             levelDictionary.TryGetValue(NowStage, out obj);

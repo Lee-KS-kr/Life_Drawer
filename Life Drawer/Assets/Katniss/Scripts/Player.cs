@@ -11,7 +11,7 @@ namespace Katniss
 
         private void Start()
         {
-            SetState(new Starting());
+            //SetState(new Starting());
         }
 
         public void SetState(IState nextState)

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Mizu
 {
@@ -54,7 +55,7 @@ namespace Mizu
         {
             foreach(var obj in _thisLevelInclude)
             {
-                if (_foundInclude.Contains(obj) == false)
+                if (_foundInclude?.Contains(obj) == false)
                     _fallDown.SetFall(obj);
             }
 
