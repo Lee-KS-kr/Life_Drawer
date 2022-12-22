@@ -40,14 +40,14 @@ namespace Mizu
             _polygonCollider.SetPath(1, gameScreen);
         }
 
-        private void OnTriggerEnter2D(Collider2D col)
-        {
-            Debug.Log(col.gameObject.name);
-            if (col.gameObject.layer == bloodLayer || col.gameObject.layer == includeLayer)
-            {
-                gameFailedAction?.Invoke();
-                Debug.Log($"{col.gameObject.name} + GAME FAILED");
-            }
-        }
+        //private void OnTriggerEnter2D(Collider2D col)
+        //{
+        //    Debug.Log(col.gameObject.name);
+        //    if (col.gameObject.layer == bloodLayer || col.gameObject.layer == includeLayer)
+        //    {
+        //        gameFailedAction?.Invoke();
+        //        Debug.Log($"{col.gameObject.name} + GAME FAILED");
+        //    }
+        //}
     }
 }
