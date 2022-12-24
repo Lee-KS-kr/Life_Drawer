@@ -9,9 +9,9 @@ namespace Katniss
     {
         private int bloodParticlePoolMaxSize = 300;
         private int count = 0;
+        private float size;
 
         private BloodParticle firstBloodParticle;
-        private float size;
 
         [SerializeField] BloodParticle bloodParticlePrefab;
 
@@ -106,7 +106,7 @@ namespace Katniss
                 if (bloodParticle.CheckByRay(i))
                 {
                     var nextBloodParticle = bloodParticlePool.Get();
-                    nextBloodParticle.movePos(bloodParticle.transform.position, i);
+                    nextBloodParticle.MovePos(bloodParticle.transform.position, i);
                     StartCoroutine(duplicateBloodParticle(nextBloodParticle));
                 }
                 yield return null;
@@ -117,9 +117,9 @@ namespace Katniss
         {
             var effectSize = 0.15f;
             var effectTime = 0.5f;
+            var duration = 0f;
 
             size = transform.localScale.x;
-            var duration = 0f;
 
             for (var time = 0f; duration < 7f; time += Time.deltaTime)
             {
@@ -128,7 +128,8 @@ namespace Katniss
                     time = 0;
                     transform.localScale = Vector3.one * size;
                 }
-                if (time < effectTime)
+
+                else if (time < effectTime)
                 {
                     transform.localScale = Vector3.one * (size + effectSize * time / effectTime);
                 }
@@ -140,7 +141,6 @@ namespace Katniss
                 duration += Time.deltaTime;
                 yield return null;
             }
-
         }
     }
 }
