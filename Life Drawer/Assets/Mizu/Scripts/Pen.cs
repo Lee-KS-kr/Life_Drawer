@@ -21,13 +21,13 @@ namespace Mizu
         private Vector3 _camPosZ;
         private List<Vector2> points;
         private List<Vector2> points2;
-        private List<Vector3> meshPoints;
-        private List<int> meshTrianglePoints;
+        //private List<Vector3> meshPoints;
+        //private List<int> meshTrianglePoints;
         private Vector3 _newLine;
-        private Mesh mesh;
+        //private Mesh mesh;
 
         [SerializeField] private Camera _cam;
-        [SerializeField] private MeshFilter meshFilter;
+        //[SerializeField] private MeshFilter meshFilter;
         public Action<List<Vector2>> endDrawingAction;
 
         [Header("Pen Line Settings")]
@@ -50,8 +50,8 @@ namespace Mizu
             points = new List<Vector2>();
             points2 = new List<Vector2>();
 
-            meshPoints = new List<Vector3>();
-            meshTrianglePoints = new List<int>();
+            //meshPoints = new List<Vector3>();
+            //meshTrianglePoints = new List<int>();
 
             _newLine = new Vector3(penLineWidth / 2, penLineWidth / 2, 0);
         }
@@ -99,7 +99,6 @@ namespace Mizu
             positionCount++;
             positionIndex++;
 
-            //Katniss~
             if (isInnerLine)
             {
                 angle = Math.Atan2(newPoint.y, newPoint.x);
@@ -112,11 +111,11 @@ namespace Mizu
                 newPoint.x += (penLineWidth / 2 * (float)Math.Cos(angle));
                 newPoint.y += (penLineWidth / 2 * (float)Math.Sin(angle));
             }
-            //~Katniss
 
             _lineRenderer.positionCount = positionCount;
             _lineRenderer.SetPosition(positionIndex, newPoint);
             points.Add(newPoint);
+
             // meshPoints.Add((Vector3)newPoint);
 
             // if (positionCount > 2)
@@ -137,10 +136,10 @@ namespace Mizu
             _edgeCollider.SetPoints(points);
             endDrawingAction?.Invoke(points);
 
-            if (meshFilter != null)
+            /*if (meshFilter != null)
             {
-                // makeMesh();
-            }
+                makeMesh();
+            }*/
         }
 
         // private void makeMesh()
